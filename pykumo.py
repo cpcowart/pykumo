@@ -62,6 +62,9 @@ class PyKumo:
                                                              ex=str(ex)))
         return {}
 
+    def poll_status(self):
+        self._update_status
+
     def _update_status(self):
         """ Retrieve and cache current status dictionary if enough time
             has passed
@@ -120,7 +123,6 @@ class PyKumo:
 
     def get_mode(self):
         """ Last retrieved operating mode from unit """
-        self._update_status()
         try:
             val = self._status['mode']
         except KeyError:
@@ -129,7 +131,6 @@ class PyKumo:
 
     def get_heat_setpoint(self):
         """ Last retrieved heat setpoint from unit """
-        self._update_status()
         try:
             val = self._status['spHeat']
         except KeyError:
@@ -138,7 +139,6 @@ class PyKumo:
 
     def get_cool_setpoint(self):
         """ Last retrieved cooling setpoint from unit """
-        self._update_status()
         try:
             val = self._status['spCool']
         except KeyError:
@@ -147,7 +147,6 @@ class PyKumo:
 
     def get_current_temperature(self):
         """ Last retrieved current temperature from unit """
-        self._update_status()
         try:
             val = self._status['roomTemp']
         except KeyError:
@@ -156,7 +155,6 @@ class PyKumo:
 
     def get_fan_speed(self):
         """ Last retrieved fan speed mode from unit """
-        self._update_status()
         try:
             val = self._status['fanSpeed']
         except KeyError:
@@ -165,7 +163,6 @@ class PyKumo:
 
     def get_vane_direction(self):
         """ Last retrieved vane direction mode from unit """
-        self._update_status()
         try:
             val = self._status['vaneDir']
         except KeyError:
@@ -174,7 +171,6 @@ class PyKumo:
 
     def get_current_humidity(self):
         """ Last retrieved humidity from sensor, if any """
-        self._update_status()
         val = None
         try:
             for sensor in self._sensors:
@@ -186,7 +182,6 @@ class PyKumo:
 
     def get_sensor_battery(self):
         """ Last retrieved battery percentage from sensor, if any """
-        self._update_status()
         val = None
         try:
             for sensor in self._sensors:
@@ -198,7 +193,6 @@ class PyKumo:
 
     def has_dry_mode(self):
         """ True if unit has dry (dehumidify) mode """
-        self._update_status()
         val = None
         try:
             val = self._profile['hasModeDry']
@@ -208,7 +202,6 @@ class PyKumo:
 
     def has_heat_mode(self):
         """ True if unit has heat mode """
-        self._update_status()
         val = None
         try:
             val = self._profile['hasModeHeat']
@@ -218,7 +211,6 @@ class PyKumo:
 
     def has_vent_mode(self):
         """ True if unit has vent (fan) mode """
-        self._update_status()
         val = None
         try:
             val = self._profile['hasModeVent']
@@ -228,7 +220,6 @@ class PyKumo:
 
     def has_auto_mode(self):
         """ True if unit has auto (heat/cool) mode """
-        self._update_status()
         val = None
         try:
             val = self._profile['hasModeAuto']
