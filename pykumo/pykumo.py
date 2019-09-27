@@ -63,7 +63,7 @@ class PyKumo:
         return {}
 
     def poll_status(self):
-        self._update_status
+        self._update_status()
 
     def _update_status(self):
         """ Retrieve and cache current status dictionary if enough time

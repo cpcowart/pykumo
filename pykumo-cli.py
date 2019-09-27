@@ -56,6 +56,10 @@ class pyKumoCLI(Cmd):
         for zone in self.zones:
             print(zone['name'])
 
+    def do_update(self, inp):
+        for zone in self.zones:
+            zone['pykumo'].poll_status()
+
     def do_get(self, inp):
         '''get zone_name attribute1 [ attribute2 ... ]'''
         cmd = inp.split()
